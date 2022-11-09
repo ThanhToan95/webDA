@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/home/index :: dynamic(~{::body})}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Product</title>
+   
+</head>
+<body>
+    <div class="container w3-content" th:object="${item}">
+        <div class="viewRight row" >
+            <div class="col-3">
+                <img th:src="@{|/app-assets/img/product/*{image}|}" class="cloud-zoom" id="zoom1" rel="position: 'inside' , showTitle: false, adjustX:0, adjustY:0" style="position: relative; display: block;margin-top: 10px;height: 360px;">
+            </div>
+            <div class="viewRight_more col-9">
+                <div class="titleView" th:utext="*{name}"></div>
+                <div class="product_vendor">
+                    Thương hiệu: <span class="cl_main" th:text="*{manufaturer}"></span> | <span th:text="*{id}"></span> 
+                </div>
+                <span style="font-size: 24px; color: rgb(91, 91, 210);" th:text="*{#numbers.formatDecimal(price-(price*discount)/100, 0, 'COMMA', 0, 'POINT')}"></span>&nbsp;
+                <strike><span th:text="*{#numbers.formatDecimal(price, 0, 'COMMA', 0, 'POINT')}"></span></strike>
+                <div class="description">
+                    <p th:text="*{description}" style="display:-webkit-box;-webkit-box-orient: vertical;overflow: hidden;padding-bottom: 1em;text-align: left;font-size: 17px;color: rgb(10, 10, 9);"></p> 
+                </div>           
+                <div class="ct_add mt-2">
+                    <ul>
+                        <div class="so-luong-mua">
+                            <span class="number-down btn">–</span>
+                            <input type="text" id="number" value="          1">
+                            <span class="number-up btn">+</span>                        
+                        </div>
+                        <h3><a href="" class="clor_01 preview fancybox.ajax btn btn-warning">Đặt hàng</a></h3>           
+                    </ul>
+                    <div class="sharelink"> 
+                        <a class="like-icon btn">Like <i class="fa-regular fa-thumbs-up"></i></a>
+                        <a class="like-w btn">Tweet <i class="fa-brands fa-square-twitter"></i></a>
+                    </div>
+                </div>            
+            </div>           
+        </div>
+        <div class="dv-home-product pagewrap" style="background: #2775d2;padding: 20px;border-radius: 10px;margin-top: -80px;">
+            <div class="title_home wow flipInX align_center animated" style="visibility: visible; animation-name: flipInX;">
+                <h2 class="tiltle white"><img src="/app-assets/img/banner/sale1.png"> SẢN PHẨM LIÊN QUAN</h2>
+            </div>
+            <div class="hieu_ung owl-carousel owl-theme"> 
+                <div class="noi_dung" th:each="p:${item.category.product}">
+                        <div class="card">                       
+                            <img th:data-src="@{|/app-assets/img/product/${p.image}|}" class="im card-img-top owl-lazy ">                          
+                            <div class="phu_de card-body">
+                                <h5 class="card-title" style="width: 200px;overflow: hidden;height:70px;word-wrap:break-word;" th:utext="${p.name}"></h5>                           
+                                    <h4 class="price"><strike><span>[[${#numbers.formatDecimal(p.price, 0, 'COMMA', 0, 'POINT')}]]<sup>₫</sup></span></strike>&nbsp;&nbsp;[[${#numbers.formatDecimal(p.price-(p.price*p.discount)/100, 0, 'COMMA', 0, 'POINT')}]]<sup>₫</sup></h4>
+                                    <span class="css-1h3p11h">Giảm [[${p.discount}]]%</span> 
+                                <div class="icon_sp">
+                                    <a th:href="@{|/product/detail/${p.id}|}" class="tbay-tooltip quick-view icons preview fancybox.ajax" title="XEM NHANH"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    <a href="" title="Thêm yêu thích"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                    <a href="" title="Thêm so sánh"><i class="fa fa-retweet" aria-hidden="true"></i></a>
+                                    <a href="popup_giohang.php" rel="nofollow" class="button a_cart product_type preview fancybox.ajax"><i class="fa fa-shopping-bag"></i></a>
+                                </div>
+                               
+                            </div>
+                        </div>               
+                </div>          
+            </div>                  
+        </div>
+        <div class="show-brand" style="bottom:300px;position: relative;"> 
+            <div class="title_brand mt-3 ">
+                <h2 class="tiltle1">CHUYÊN TRANG THƯƠNG HIỆU</h2>
+            </div>
+            <div class="col-lg-12 row">
+                <div class="col-lg-4">
+                    <div class="media">
+                        <a href=""><img src="/app-assets/img/banner/th1.png"></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="media">
+                        <a href=""><img src="/app-assets/img/banner/th2.png"></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="media">
+                        <a href=""><img src="/app-assets/img/banner/th3.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="support clearfix pagewrap mt-5">
+            <div class="col-lg-12 row">
+                <div class="col-lg-3"><div class="media1"><img src="/app-assets/img/banner/qc2.jpg" style="width: 320px;height: 182px;"></div></div>
+                <div class="col-lg-5"><div class="media2"><img src="/app-assets/img/banner/qc1.jpg" style="width: 650px;height: 182px;"alt=""></div></div>
+                <div class="col-lg-4"><div class="media3"><img src="/app-assets/img/banner/qc3.jpg" style="width: 320px; height: 182px;"alt=""></div></div>
+            </div>
+        </div>       
+   </div>  
+</body>
+</html>

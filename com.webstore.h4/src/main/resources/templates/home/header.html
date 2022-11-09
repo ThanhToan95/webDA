@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <img src="/app-assets/img/logos/logoTech.png" alt="logo"/>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" th:href="@{/home/home}">Trang chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">Giới thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">Sản phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">Tin Tức</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">Liên hệ</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dịch vụ</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#!">Hướng dẫn mua hàng</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="#!">Hướng dẫn thanh toán</a></li>
+                            <li><a class="dropdown-item" href="#!">Miễn phí giao hàng</a></li>
+                        </ul>
+                    </li>
+                </ul>             
+            </div>
+            <h4 th:unless="${#request.remoteUser}">
+                <p style="color:#2e99b7;margin-top: 18px;font-size: 18px;">Chưa đăng nhập</p>
+            </h4>
+            <th:block th:if="${#request.remoteUser}">
+                 <h4 style="color:#2e99b7;margin-top: 10px;font-size: 18px; font-family: Arial, Helvetica, sans-serif;"><b>WELLCOME YOU: [[${#request.remoteUser.toUpperCase()}]]</b></h4> 
+            </th:block>
+        </div>
+    </nav>
+</body>
+</html>
